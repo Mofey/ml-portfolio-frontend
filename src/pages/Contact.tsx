@@ -3,6 +3,12 @@ import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin } from 'lucide-react';
 
 const Contact = () => {
+  const BACKEND_URL = 
+  window.location.hostname === 'localhost'
+    ? 'http://localhost:5000/api/contact'
+    : 'https://ml-portfolio-backend.vercel.app/';
+
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -27,7 +33,7 @@ const Contact = () => {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
+      const response = await fetch(BACKEND_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

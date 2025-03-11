@@ -6,7 +6,7 @@ const Contact = () => {
   const BACKEND_URL = 
   window.location.hostname === 'localhost'
     ? 'http://localhost:5000/api/contact'
-    : 'https://ml-portfolio-backend.vercel.app/';
+    : 'https://ml-portfolio-backend.vercel.app/api/contact';
 
 
   const [formData, setFormData] = useState({

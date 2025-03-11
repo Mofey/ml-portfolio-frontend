@@ -16,7 +16,7 @@ const Home = () => {
             Mofetoluwa Balogun
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
-            Software Developer & Accountant – Bridging Financial Expertise with Machine Learning
+            Machine Learner & Accountant – Bridging Financial Expertise with Machine Learning
           </p>
           <Link
             to="/projects"

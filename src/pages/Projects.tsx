@@ -1,48 +1,42 @@
 import { motion } from 'framer-motion';
 import { Github } from 'lucide-react';
+import { projects, tagToUrlMap } from '../data/data';
 
-const projects = [
-  {
-    title: 'Customer Segmentation using K-Means',
-    description: 'Implemented unsupervised learning to identify distinct customer segments for targeted marketing strategies.',
-    tags: ['Python', 'Scikit-learn', 'Unsupervised Learning'],
-    github: 'https://github.com/Mofey/unsupervised_learning',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800'
-  },
-  {
-    title: 'Image Classification using CNNs',
-    description: 'Deep learning model for accurate image classification using Convolutional Neural Networks.',
-    tags: ['Python', 'TensorFlow', 'Deep Learning'],
-    github: 'https://github.com/Mofey/deep_learning',
-    image: 'https://images.unsplash.com/photo-1527430253228-e93688616381?auto=format&fit=crop&q=80&w=800'
-  },
-  {
-    title: 'Loan Approval Prediction',
-    description: 'Decision tree model to predict loan approval probability based on customer data.',
-    tags: ['Python', 'Scikit-learn', 'Decision Trees'],
-    github: 'https://github.com/Mofey/supervised_learning',
-    image: 'https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&q=80&w=800'
-  },
-  {
-    title: 'House Price Prediction',
-    description: 'SQL-based machine learning project combining database operations with linear regression.',
-    tags: ['Python', 'SQL', 'Linear Regression'],
-    github: 'https://github.com/Mofey/linear_regression',
-    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=800'
-  }
-];
+const FloatingCircles = () => (
+  <>
+    <motion.div
+      className="absolute rounded-full bg-white dark:bg-gray-700 z-0"
+      style={{ width: 100, height: 100, top: "10%", left: "5%" }}
+      animate={{ y: [0, -30, 0] }}
+      transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+    />
+    <motion.div
+      className="absolute rounded-full bg-white dark:bg-gray-700 z-0"
+      style={{ width: 150, height: 150, bottom: "10%", right: "5%" }}
+      animate={{ y: [0, 30, 0] }}
+      transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+    />
+    <motion.div
+      className="absolute rounded-full bg-white dark:bg-gray-700 z-0"
+      style={{ width: 80, height: 80, top: "50%", right: "20%" }}
+      animate={{ y: [0, -20, 0] }}
+      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+    />
+  </>
+);
 
 const Projects = () => {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-24 pb-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="relative min-h-screen bg-gradient-to-br bg-gray-50 to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 overflow-hidden transition-colors duration-500 pt-24 pb-12">
+      <FloatingCircles />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
             {projects.map((project, index) => (
               <motion.div
                 key={project.title}
@@ -61,19 +55,22 @@ const Projects = () => {
                   <p className="text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.tags.map(tag => (
-                      <span
+                      <a
                         key={tag}
-                        className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm"
+                        href={tagToUrlMap[tag] || `https://www.google.com/search?q=${tag}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm hover:bg-blue-200 dark:hover:bg-yellow-300 dark:hover:text-blue-900 transition-colors"
                       >
                         {tag}
-                      </span>
+                      </a>
                     ))}
                   </div>
                   <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                    className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-yellow-300"
                   >
                     <Github size={20} className="mr-2" />
                     View on GitHub

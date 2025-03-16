@@ -10,7 +10,7 @@ import Notify from './components/Notify';
 function App() {
   // Initialize theme state with localStorage value (default to 'light' if none is found)
   const storedTheme = localStorage.getItem('theme');
-  const [theme, setTheme] = useState<string>(storedTheme ? storedTheme : 'light');
+  const [theme, setTheme] = useState<string>(storedTheme ? storedTheme : 'dark');
 
   // Update the document class whenever the theme changes
   useEffect(() => {
